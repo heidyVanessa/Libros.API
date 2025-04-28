@@ -7,10 +7,11 @@ function Menu() {
   return (
     <nav className="c-menu">
           <Link to="/">Lista</Link>
-          <Link to="/capturados">Capturados</Link>
-          <Link to="/aleatorios">Aleatorio</Link>
-          <Link to="/usuarios">Usuarios</Link>
+          <Link to="/leidos">Leidos</Link>
+          <Link to="/leyendo">Leyendo</Link>
           <Link to="/favoritos">Favoritos</Link>
+          <Link to="/guardados">Guardados</Link>
+          <Link to="/usuarios">Usuarios</Link>
     </nav>
   )
 }

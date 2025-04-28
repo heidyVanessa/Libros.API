@@ -1,8 +1,7 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Filtro from '../filtro';
 import { useNavigate } from "react-router-dom";
-
-import './style.css'
+import './style.css';
 
 function Lista() {
   const navigate = useNavigate();
@@ -12,16 +11,14 @@ function Lista() {
 
   useEffect(() => {
     const obtenerDatos = async () => {
+      let res;
       if (tipoSeleccionado === 'All') {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${1025}`);
-        const json = await res.json();
-        setData(json.results);
+        res = await fetch('https://gutendex.com/books/?languages=es');
       } else {
-        const res = await fetch(`https://pokeapi.co/api/v2/type/${tipoSeleccionado}`);
-        const json = await res.json();
-        const listaFiltrada = json.pokemon.map(p => p.pokemon);
-        setData(listaFiltrada);
+        res = await fetch(`https://gutendex.com/books/?languages=es&topic=${tipoSeleccionado}`);
       }
+      const json = await res.json();
+      setData(json.results);
     };
 
     obtenerDatos();
@@ -31,48 +28,49 @@ function Lista() {
     setTipoSeleccionado(tipo);
   };
 
-  let resultados=data;
-
-  if (!isNaN(busqueda)) {
-    resultados = data.filter(pokemon =>
-      pokemon.url.includes('/' + busqueda)
+  // Filter books based on search input
+  let resultados = data;
+  
+  if (busqueda.length >= 2) {
+    resultados = data.filter(book =>
+      book.title.toLowerCase().includes(busqueda.toLowerCase())
     );
   }
-
-  if (busqueda.length >= 2 && isNaN(busqueda)) {
-    resultados = data.filter(pokemon =>
-      pokemon.name.toLowerCase().includes(busqueda.toLowerCase())
-    );
-  }
-
 
   return (
     <>
-     <input
+      <input
         type="text"
-        placeholder="Buscar Pokémon"
+        placeholder="Buscar Libro"
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
         className="c-buscador"
       />
-    <Filtro onTipoChange={handleTipoChange} />
+      <Filtro onTipoChange={handleTipoChange} />
 
-    <section className='c-lista'>
-    {resultados.map((pokemon, index) => (
-      <div className='c-lista-pokemon'
-      onClick={() => navigate(`/pokemon/${pokemon.name}`)}
-      key={index}>
-        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split("/")[6]}.png`} 
-              alt={`Pokémon ${pokemon.name}`} width='auto' height='60' loading='lazy'
+      <section className="c-lista">
+        {resultados.map((book, index) => (
+          <div
+            className="c-lista-pokemon"
+            onClick={() => navigate(`/libro/${encodeURIComponent(book.id)}`)}
+            key={index}
+          >
+            <img
+              src={book.formats["image/jpeg"] || "https://via.placeholder.com/150"}
+              alt={`Portada de ${book.title}`}
+              width="auto"
+              height="100"
+              loading="lazy"
             />
-        <p>{pokemon.name}</p>
-      </div>
-    ))}
-  </section>
-
-  </>
-
-  )
+            <p>{book.title}</p>
+            {book.authors && book.authors.length > 0 && (
+              <p className="autor">Autor: {book.authors[0].name}</p>
+            )}
+          </div>
+        ))}
+      </section>
+    </>
+  );
 }
 
 export default Lista

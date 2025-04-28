@@ -1,29 +1,32 @@
 import { useState } from 'react' 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css' 
-import Aleatorios from './componentes/aleatorios' 
-import Captutados from './componentes/capturados' 
-import Favoritos from './componentes/favoritos' 
-import Lista from './componentes/lista' 
-import Pokemon from './componentes/pokemon' 
-import Usuarios from './componentes/usuarios' 
-import Menu from './componentes/menu'
+import Favoritos from './componentes/favoritos'
+import Guardados from './componentes/guardados'
+import Leidos from './componentes/leidos';
+import Leyendo from './componentes/leyendo';
+import Libros from './componentes/libros';
+import Lista from './componentes/lista';
+import Menu from './componentes/menu';
+import Usuarios from './componentes/usuarios';
 
-function App() { 
-  return ( 
+
+function App() {
+  return (
     <Router>
-      
       <Menu />
-
       <Routes>
+        {/* Define each route with a unique path */}
         <Route path="/" element={<Lista />} />
-        <Route path="/" element={<Aleatorios/>} />
-        <Route path="/" element={<Captutados/>} />
-        <Route path="/" element={<Favoritos/>} />
-        <Route path="/" element={<Usuarios/>} />
-        <Route path="/Pokemon/:name" element={<Pokemon />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/guardados" element={<Guardados />} />
+        <Route path="/leidos" element={<Leidos />} />
+        <Route path="/leyendo" element={<Leyendo />} />
+        <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/libros/:name" element={<Libros />} />
       </Routes>
-    </Router>  
-  ) 
-} 
-export default App
+    </Router>
+  );
+}
+
+export default App;
