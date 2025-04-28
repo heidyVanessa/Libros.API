@@ -23,7 +23,7 @@ function App() {
         <Route path="/leidos" element={<Leidos />} />
         <Route path="/leyendo" element={<Leyendo />} />
         <Route path="/usuarios" element={<Usuarios />} />
-        <Route path="/libros/:name" element={<Libros />} />
+        <Route path="/libro/:id" element={<Libros />} />
       </Routes>
     </Router>
   );

@@ -1,29 +1,30 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"; 
 import './style.css';
 
 function Libros() {
-  const { name } = useParams(); // 'name' will hold the book's id or title
+  const { id } = useParams(); // Cambiado de 'name' a 'id'
   const [dataBook, setDataBook] = useState(null);
 
   useEffect(() => {
-    fetch(`https://gutendex.com/books?search=${name}`)
+    if (!id) {
+      console.warn("El parámetro 'id' está vacío.");
+      setDataBook(null);
+      return;
+    }
+
+    fetch(`https://gutendex.com/books/${id}`) // Buscamos directamente por ID
       .then(response => response.json())
       .then(responseData => {
-        if (responseData.results && responseData.results.length > 0) {
-          setDataBook(responseData.results[0]); // Use the first result
-        } else {
-          setDataBook(null); // No result found
-        }
+        setDataBook(responseData);
       })
       .catch(error => {
-        console.error("Error:", error);
-        setDataBook(null); // Handle error gracefully
+        console.error("Error al obtener datos:", error);
+        setDataBook(null);
       });
-  }, [name]); // Dependency on 'name' so it fetches when 'name' changes
+  }, [id]);
 
-  // Handle loading or no results
-  if (!dataBook) return <p>Cargando o no encontrado...</p>;
+  if (!dataBook) return <p>Cargando...</p>;
 
   return (
     <div className="libro">
@@ -34,7 +35,7 @@ function Libros() {
       />
 
       <p><strong>Título:</strong> {dataBook?.title || "No disponible"}</p>
-      
+
       {dataBook?.authors && dataBook.authors.length > 0 && (
         <p><strong>Autor:</strong> {dataBook.authors[0]?.name || "No disponible"}</p>
       )}
@@ -50,6 +51,10 @@ function Libros() {
           Descargar libro
         </a>
       </p>
+
+      {dataBook?.subjects && dataBook.subjects.length > 0 && (
+        <p><strong>Temas:</strong> {dataBook.subjects.join(", ")}</p>
+      )}
     </div>
   );
 }
