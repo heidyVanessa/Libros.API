@@ -1,0 +1,42 @@
+/* style.css para el componente Libros */
+
+.libro {
+    max-width: 600px;
+    margin: 3rem auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .libro img {
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    max-height: 300px;
+    object-fit: contain;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .libro p {
+    margin: 1rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .libro strong {
+    color: #6200ea;
+  }
+  
+  .libro a {
+    color: #ffffff;
+    background-color: #6200ea;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
+  

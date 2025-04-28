@@ -16,7 +16,6 @@ function App() {
     <Router>
       <Menu />
       <Routes>
-        {/* Define each route with a unique path */}
         <Route path="/" element={<Lista />} />
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/guardados" element={<Guardados />} />
