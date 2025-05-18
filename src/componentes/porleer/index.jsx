@@ -3,17 +3,17 @@ import { AppContext } from '../../contexto/contexto';
 import { useNavigate } from "react-router-dom";
 import './style.css';
 
-function Leidos() {
-  const { leidos } = useContext(AppContext);
+function PorLeer() {
+  const { porLeer } = useContext(AppContext);
   const navigate = useNavigate();
 
   return (
     <>
-      {leidos.length === 0 ? (
-        <p>No has leído ningún libro.</p>
+      {porLeer.length === 0 ? (
+        <p>No tienes libros por leer.</p>
       ) : (
         <section className='c-lista'>
-          {leidos.map((book, index) => (
+          {porLeer.map((book, index) => (
             <div 
               className='c-lista-pokemon'
               onClick={() => navigate(`/libro/${book.id}`)}
@@ -35,4 +35,4 @@ function Leidos() {
   );
 }
 
-export default Leidos;
+export default PorLeer;

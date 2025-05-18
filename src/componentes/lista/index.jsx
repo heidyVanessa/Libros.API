@@ -1,36 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import Filtro from '../filtro';
 import { useNavigate } from "react-router-dom";
 import './style.css';
+import { AppContext } from '../../contexto/contexto';
 
 function Lista() {
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [tipoSeleccionado, setTipoSeleccionado] = useState('All');
+  const { data, setTipoSeleccionado } = useContext(AppContext);
   const [busqueda, setBusqueda] = useState('');
-
-  useEffect(() => {
-    const obtenerDatos = async () => {
-      let res;
-      if (tipoSeleccionado === 'All') {
-        res = await fetch('https://gutendex.com/books/?languages=es');
-      } else {
-        res = await fetch(`https://gutendex.com/books/?languages=es&topic=${tipoSeleccionado}`);
-      }
-      const json = await res.json();
-      setData(json.results);
-    };
-
-    obtenerDatos();
-  }, [tipoSeleccionado]);
+  const navigate = useNavigate();
 
   const handleTipoChange = (tipo) => {
     setTipoSeleccionado(tipo);
   };
 
-  // Filter books based on search input
   let resultados = data;
-  
   if (busqueda.length >= 2) {
     resultados = data.filter(book =>
       book.title.toLowerCase().includes(busqueda.toLowerCase())
@@ -47,25 +30,21 @@ function Lista() {
         className="c-buscador"
       />
       <Filtro onTipoChange={handleTipoChange} />
-
       <section className="c-lista">
         {resultados.map((book, index) => (
           <div
             className="c-lista-pokemon"
-            onClick={() => navigate(`/libro/${encodeURIComponent(book.id)}`)}
+            onClick={() => navigate(`/libro/${book.id}`)}
             key={index}
           >
             <img
               src={book.formats["image/jpeg"] || "https://via.placeholder.com/150"}
-              alt={`Portada de ${book.title}`}
+              alt={`Portada ${book.title}`}
               width="auto"
-              height="100"
+              height="60"
               loading="lazy"
             />
             <p>{book.title}</p>
-            {book.authors && book.authors.length > 0 && (
-              <p className="autor">Autor: {book.authors[0].name}</p>
-            )}
           </div>
         ))}
       </section>
@@ -73,4 +52,4 @@ function Lista() {
   );
 }
 
-export default Lista
+export default Lista;

@@ -1,16 +1,10 @@
-import React from 'react';
-
 function Filtro({ onTipoChange }) {
   const categorias = [
     "All",
     "Ficción", "Cuentos", "Historia", "Aventuras", "Ciencia", "Religión",
     "Filosofía", "Biografía", "Poesía", "Teatro", "Amor", "Misterio",
-    "Fantástico", "Educación", "Mitología"
+    "Fantástico", "Educación", "Mitología", "No Leídos ni Por Leer"
   ];
-
-  const handleCategoryChange = (categoria) => {
-    onTipoChange(categoria); // Avisamos al padre (Lista.jsx)
-  };
 
   return (
     <div className="c-filtro">
@@ -18,7 +12,7 @@ function Filtro({ onTipoChange }) {
         <button
           className=""
           key={index}
-          onClick={() => handleCategoryChange(unaCategoria)}
+          onClick={() => onTipoChange(unaCategoria)}
         >
           {unaCategoria}
         </button>
@@ -27,4 +21,4 @@ function Filtro({ onTipoChange }) {
   );
 }
 
-export default Filtro
+export default Filtro;
