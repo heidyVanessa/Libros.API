@@ -3,7 +3,7 @@ function Filtro({ onTipoChange }) {
     "All",
     "Ficción", "Cuentos", "Historia", "Aventuras", "Ciencia", "Religión",
     "Filosofía", "Biografía", "Poesía", "Teatro", "Amor", "Misterio",
-    "Fantástico", "Educación", "Mitología", "No Leídos ni Por Leer"
+    "Fantástico", "Educación", "Mitología"
   ];
 
   return (
