@@ -1,0 +1,475 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Estilos del menú */
+
+.c-menu {
+    background-color: silver;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem; /* Igual que .c-filtro */
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.menu-header {
+  position: relative;
+  background-color: silver;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Botón hamburguesa */
+.hamburger-button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  display: none; /* Solo visible en móvil */
+}
+
+/* Estilos de la lista de libros */
+.c-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    max-width: 95%;
+    margin: 0 auto 5rem; /* Added bottom margin for c-menu */
+}
+
+.c-lista-pokemon {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.c-lista-pokemon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.c-lista-pokemon img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0.6rem;
+}
+
+.c-lista-pokemon p {
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Estilos del buscador */
+.c-buscador {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    margin: 1rem auto 2rem; /* Added bottom margin for clearance */
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+/* Estilos del filtro */
+.c-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.c-filtro button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.c-filtro button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos de la página de libro */
+.libro {
+    max-width: 95%;
+    margin: 1.5rem auto 5rem; /* Extra bottom margin for c-menu */
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.libro img {
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    max-height: 180px;
+    width: 100%;
+    object-fit: contain;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.libro p {
+    margin: 0.6rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.libro strong {
+    color: #6200ea;
+}
+
+.libro a {
+    color: #ffffff;
+    background-color: #6200ea;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.libro a:hover {
+    background-color: #4500a0;
+}
+
+/* Estilos del login y registro */
+.login-container, .registro-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container input, .registro-container input {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-container button, .registro-container button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover, .registro-container button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos del componente usuario */
+.usuario-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.usuario-container label {
+    display: block;
+    margin: 1rem 0;
+}
+
+.usuario-container input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.usuario-container button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.usuario-container button:hover {
+    background-color: #2980b9;
+}
+
+.usuario-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.usuario-container li {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* Estilos del componente administrador */
+.admin-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-container th, .admin-container td {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.admin-container th {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.admin-container input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-container button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-container button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para el componente autor */
+.autor {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Media query for tablets and smaller devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .hamburger-button {
+        display: block;
+    }
+
+    .c-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 1rem;
+        display: none; /* Oculto por defecto */
+        background-color: silver;
+    }
+
+    .c-menu.visible {
+        display: flex;
+    }
+
+    .c-menu.hidden {
+        display: none;
+    }
+
+    .c-menu a {
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .c-menu a:hover {
+        background-color: #d0d0d0;
+        width: 100%;
+    }
+
+
+    .libro {
+        max-width: 90%;
+        margin: 1.2rem auto 4rem;
+        padding: 0.8rem;
+    }
+
+    .libro img {
+        max-height: 160px;
+        margin-bottom: 0.6rem;
+    }
+
+    .libro p {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+
+    .libro a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .c-buscador {
+        width: 95%;
+        margin: 0.8rem auto 1.5rem;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .c-lista {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.8rem;
+        padding: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .c-lista-pokemon {
+        padding: 0.6rem;
+        border-radius: 6px;
+    }
+
+    .c-lista-pokemon img {
+        margin-bottom: 0.5rem;
+    }
+
+    .c-lista-pokemon p {
+        font-size: 0.85rem;
+    }
+
+    .autor {
+        font-size: 0.8rem;
+    }
+}
+
+/* Media query for mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+
+    .c-menu {
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .c-menu a {
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 0.5rem;
+    }
+
+    .libro {
+        max-width: 95%;
+        margin: 1rem auto 3.5rem;
+        padding: 0.6rem;
+        border-radius: 6px;
+    }
+
+    .libro img {
+        max-height: 140px;
+        margin-bottom: 0.5rem;
+    }
+
+    .libro p {
+        font-size: 0.8rem;
+        line-height: 1.2;
+        margin: 0.5rem 0;
+    }
+
+    .libro a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .c-buscador {
+        width: 95%;
+        margin: 0.6rem auto 1.2rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 5px;
+    }
+
+    .c-lista {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.6rem;
+        padding: 0.8rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .c-lista-pokemon {
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+
+    .c-lista-pokemon img {
+        margin-bottom: 0.4rem;
+    }
+
+    .c-lista-pokemon p {
+        font-size: 0.8rem;
+        margin: 0.3rem 0;
+    }
+
+    .autor {
+        font-size: 0.75rem;
+    }
+}
+
+
